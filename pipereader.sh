@@ -78,6 +78,14 @@ do
                  pkill -P $$                 
                  ./sinebow.sh > /dev/null &  
                  ;;                                
+
+            "announcenumber"*)
+                NUM=${line#announcenumber}
+                echo "Got announcenumber $NUM"
+                 # kill any running child process
+                 pkill -P $$
+                ./announce_number.rb "$NUM" > /dev/null &
+                ;;
                  
             *)
                 echo "Unknown request"
